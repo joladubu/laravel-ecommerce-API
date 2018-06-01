@@ -1,0 +1,14 @@
+create a laravel project using composer
+Run server or create a virtual host
+signup for twitter API registration on www.apps.twitter.com
+run ->  composer require thujorn/twitter from the project root directory
+Now open up /config/app.php and add the service provider to your providers array.
+
+'providers' => [
+	Thujohn\Twitter\TwitterServiceProvider::class,
+]
+Now add the alias.
+
+'aliases' => [
+	'Twitter' => Thujohn\Twitter\Facades\Twitter::class,
+]
