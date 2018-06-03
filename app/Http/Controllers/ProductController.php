@@ -2,19 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use App\Model\Product;
+use App\Model\Product; // Importing the Product Model
 use Illuminate\Http\Request;
+use App\Http\Resources\Product\ProductResource; //importing the Product Resource class
+use App\Http\Resources\Product\ProductCollection;
 
 class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return ProductCollection
      */
     public function index()
     {
-        //
+//        //return  ProductCollection::collection(Product::all()); // returns all products as json
+            //Using Pagination
+        return  ProductCollection::collection(Product::paginate(20));
     }
 
     /**
@@ -42,11 +46,12 @@ class ProductController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Model\Product  $product
-     * @return \Illuminate\Http\Response
+     * @return ProductResource
      */
     public function show(Product $product)
     {
-        //
+        //Using the ProductResource Controller array transform transform the display of ay product
+        return new ProductResource($product);
     }
 
     /**
